@@ -1,0 +1,117 @@
+<h1>Documentation for API</h1>
+<br />
+<h4>Query Endpoints</h4>
+<div>
+  <table width="100%" border="1">
+    <tr>
+      <th>HTTP Method</th>
+      <th>Endpoint API</th>
+      <th>Authorization</th>
+      <th>Description</th>
+    </tr>
+
+    <tr>
+      <td>Post</td>
+      <td>/users/auth/id</td>
+      <td>Not required</td>
+      <td>
+        Enter searcher's email and search client data by client's ID. Returns
+        data containing client ID, name, email and role.
+      </td>
+    </tr>
+    <tr>
+      <td>Post</td>
+      <td>/users/auth/name</td>
+      <td>Not required</td>
+      <td>
+        Enter searcher's email and search client data by client's name. Returns
+        data containing client ID, name, email and role.
+      </td>
+    </tr>
+    <tr>
+      <td>Post</td>
+      <td>/users/auth/username</td>
+      <td>Required. Searcher must have admin role</td>
+      <td>
+        Enter searcher's email and search policies of client by client's name.
+        Returns data containing policy ID, amount insured, email, inception
+        date, installment payment and client ID.
+      </td>
+    </tr>
+    <tr>
+      <td>Post</td>
+      <td>/users/auth/policy</td>
+      <td>Required. Searcher must have admin role</td>
+      <td>
+        Enter searcher's email and search name of client by policy ID. Returns
+        data containing policy ID, amount insured, email, inception date,
+        installment payment and client ID.
+      </td>
+    </tr>
+  </table>
+</div>
+<br />
+<h4>Response example</h4>
+<p>http://localhost:5000/users/auth/name</p>
+
+<p>{ "id": "12f34e63-d4f1-4701-bbad-5b4b81a66a38",</p>
+<p>"name": "Simone",</p>
+<p>"email": "simoneblankenship@quotezart.com",</p>
+<p>"role": "user" }</p>
+<h4>Response definitions</h4>
+<h5>Client Data</h5>
+<table width="50%" border="1">
+  <tr>
+    <th>Response item</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>id</td>
+    <td>ID of user/client</td>
+  </tr>
+  <tr>
+    <td>name</td>
+    <td>Name of user/client</td>
+  </tr>
+  <tr>
+    <td>email</td>
+    <td>Email of user/client</td>
+  </tr>
+  <tr>
+    <td>role</td>
+    <td>Role of user/client. Assign to admin or user</td>
+  </tr>
+</table>
+
+<br />
+<h5>Policy Data</h5>
+<table width="60%" border="1">
+  <tr>
+    <th>Response item</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td>id</td>
+    <td>Policy ID</td>
+  </tr>
+  <tr>
+    <td>amountInsured</td>
+    <td>Amount insured stated in the policy</td>
+  </tr>
+  <tr>
+    <td>email</td>
+    <td>Email of user/client</td>
+  </tr>
+  <tr>
+    <td>inceptionDate</td>
+    <td>Start date of policy</td>
+  </tr>
+  <tr>
+    <td>installmentPayment</td>
+    <td>Payment is made by installment. Specified by either true or false</td>
+  </tr>
+  <tr>
+    <td>clientId</td>
+    <td>ID of user/client. Related to the id in client data</td>
+  </tr>
+</table>

@@ -32,6 +32,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const port = process.env.PORT || 5000;
 
 //-------routes --------
-app.use("/auth", require("./users/controllers"));
+// app.use("/auth", require("./users/controllers"));
+app.use("/users/auth", require("./users/controllers"));
+app.use("/api", require("./users/controllers"));
 
 app.listen(port, () => console.log(`Server started on port ${port}`));

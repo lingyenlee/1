@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 const userService = require("./service");
 
+//-----------API documentation------------------
+router.get("/documentation", (req, res) => res.render("API-Documentation"));
+
 // -------- find ID API ----------------------------
 router.get("/id", (req, res) => res.render("findByID"));
 router.post("/id", authenticate, getByID);
@@ -11,12 +14,12 @@ router.get("/name", (req, res) => res.render("findByName"));
 router.post("/name", authenticate, getByName);
 
 //--------- find policies API, protected by role --------------------------
-router.get("/policy", (req, res) => res.render("findPolicy"));
-router.post("/policy", authenticate, authorize, getPolicyByName);
+router.get("/username", (req, res) => res.render("findPolicy"));
+router.post("/username", authenticate, authorize, getPolicyByName);
 
 //---------find policy number API protected by role --------------------------
-router.get("/user", (req, res) => res.render("findUser"));
-router.post("/user", authenticate, authorize, getUserByPolicy);
+router.get("/policy", (req, res) => res.render("findUsername"));
+router.post("/policy", authenticate, authorize, getUserByPolicy);
 
 // ---------authorize based on role-----------------------------
 function authorize(req, res, next) {
@@ -32,7 +35,11 @@ function authenticate(req, res, next) {
   userService
     .authenticate(req.body.email)
     .then(user => {
-      user ? next : res.status(400).send({ message: "Email is incorrect" });
+      user
+        ? next
+        : res.status(400).send({
+            message: "Bad Request. Check and try again",
+          });
     })
     .catch(err => console.log(err));
   next();
@@ -46,7 +53,8 @@ function getByID(req, res, next) {
       user
         ? res.json(user)
         : res.status(400).send({
-            message: "Incorrect ID",
+            message:
+              "Bad Request. ID is either incorrect or does not exist. Please check and try again",
           });
     })
     .catch(err => console.log(err));
@@ -60,7 +68,8 @@ function getByName(req, res, next) {
       user
         ? res.json(user)
         : res.status(400).send({
-            message: "Incorrect Name",
+            message:
+              "Bad Request. Incorrect name. Please check and try again",
           });
     })
     .catch(err => console.log(err));
@@ -71,11 +80,16 @@ function getPolicyByName(req, res, next) {
   userService
     .findPolicyByName(req.body.name)
     .then(user => {
-      user
-        ? res.json(user)
-        : res.status(400).json({
-            message: "Incorrect Name",
-          });
+      if (user == "") {
+        res.send({ message: "No record found" });
+      } else {
+        user
+          ? res.json(user)
+          : res.status(400).json({
+              message:
+                "Bad Request. Incorrect name. Please check and try again",
+            });
+      }
     })
     .catch(err => console.log(err));
 }
@@ -85,7 +99,13 @@ function getUserByPolicy(req, res, next) {
   userService
     .findUserByPolicy(req.body.policyNumber)
     .then(user => {
-      user ? res.json(user) : res.status(400).send("Policy ID is incorrect");
+      user
+        ? res.json(user)
+        : res
+            .status(400)
+            .send(
+              "Bad Request. Policy number is either incorrect or does not exist.Please check and try again"
+            );
       next();
     })
     .catch(err => console.log(err));

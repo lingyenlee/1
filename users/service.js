@@ -23,7 +23,7 @@ module.exports = {
 };
 
 // -------create & save jwt token, authenticate with email ---------------
-function authenticate(email) {
+async function authenticate(email) {
   const user = clientData.filter(client => client.email === email)[0];
   if (user) {
     const token = jwt.sign({ sub: user.id, role: user.role }, secret, {
@@ -59,7 +59,7 @@ function authorize() {
 }
 
 //------------- find user by ID ----------------------
-function findByID(id) {
+async function findByID(id) {
   const user = clientData.filter(client => client.id === id)[0];
   if (user) {
     return user;
@@ -69,7 +69,7 @@ function findByID(id) {
 }
 
 //----------find user by name ---------------------
-function findByName(name) {
+async function findByName(name) {
   const user = clientData.filter(
     client => client.name.toLowerCase() === name.toLowerCase()
   )[0];
@@ -81,12 +81,11 @@ function findByName(name) {
 }
 
 //--------find policy by name ------------------------
-function findPolicyByName(name) {
+async function findPolicyByName(name) {
   const user = clientData.filter(
     client => client.name.toLowerCase() === name.toLowerCase()
   )[0];
   if (user) {
-    // console.log(user);
     const clientID = user.id;
     const policyUser = policyData.filter(
       policy => policy.clientId === clientID
@@ -98,13 +97,11 @@ function findPolicyByName(name) {
 }
 
 //-------------find user by policy id ---------------------------------
-function findUserByPolicy(policyNumber) {
+async function findUserByPolicy(policyNumber) {
   const policy = policyData.filter(policy => policy.id === policyNumber)[0];
   if (policy) {
     const clientID = policy.clientId;
-    console.log("clientID", clientID);
     const user = clientData.filter(client => client.id === clientID);
-    console.log("user", user);
     return user;
   } else {
     return null;
