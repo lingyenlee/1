@@ -2,6 +2,7 @@
 
 # dependencies
 node_modules/
+/node_modules
 .node_modules/
 .node_modules
 /.pnp
@@ -16,6 +17,7 @@ node_modules/
 # misc
 .DS_Store
 config/keys.json/
+/config/keys.json
 .config/keys.json
 .config/keys.json/
 .env.local
