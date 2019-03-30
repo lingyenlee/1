@@ -3,7 +3,7 @@ Role-based authentication and authorisation created using Node.js, Express.js an
 
 # Project Title
 
-A Node/Express.js app that contains 4 web API to query data with role-based authentication and authorisation using JWT 
+A Node/Express.js app that contains 4 web API routes to query data with role-based authentication and authorisation using JWT 
 
 ## Getting Started
 
