@@ -25,7 +25,7 @@ Install all required npm packages by running "npm install" from the command line
 
 ## Start the app
 
-Start the app by running "npm start" from the command line in the project root folder, you should see the message "Server started on port 5000". You can test the api routes directly entering the url, for example: "http://localhost:5000/users/auth/id" or using an application such as Postman.
+Start the app by running "npm run server" from the command line in the project root folder, you should see the message "Server started on port 5000". You can test the api routes directly entering the url, for example: "http://localhost:5000/users/auth/id" or using an application such as Postman.
 
 ## API Documentation
 
