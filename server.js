@@ -2,6 +2,7 @@ const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const bodyParser = require("body-parser");
 const path = require("path");
+const config = require("./config/keys.js/index.js")
 
 //------initialise app ------------
 const app = express();
@@ -24,6 +25,9 @@ app.use((req, res, next) => {
   next();
 });
 
+if (process.env.NODE_ENV === "production") {
+  
+}
 //------Bodyparser middleware -----------
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
