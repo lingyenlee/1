@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
 const storage = require("node-sessionstorage");
-const { secret } = require("../config/keys.js/index.js");
+const { secret } = require("../config/keys.json");
 
 // -------read client data------------------------
 let clientDoc = fs.readFileSync(process.cwd() + "/data/client.json");

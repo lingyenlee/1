@@ -2,7 +2,6 @@ const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
 const bodyParser = require("body-parser");
 const path = require("path");
-const config = require("./config/keys.js/index.js");
 
 //------initialise app ------------
 const app = express();
