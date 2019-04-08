@@ -5,7 +5,7 @@ A Node/Express.js app that contains 4 web API routes to query data with role-bas
 
 Download or clone the tutorial project code from https://github.com/lingyenlee/BackendTest .
 
-#### Create the secret for JWT token in (/config/keys.json)
+#### Create the "secret" key for JWT token in (/config/keys.json)
 
 1. Create a folder named "config" in the root folder and inside the config folder create a file called keys.json. 
 
